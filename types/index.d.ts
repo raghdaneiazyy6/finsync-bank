@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+import React from "react";
 
 declare type SearchParamProps = {
   params: { [key: string]: string };
@@ -8,14 +8,14 @@ declare type SearchParamProps = {
 // ========================================
 
 declare type SignUpParams = {
-  firstName: string;
-  lastName: string;
-  address1: string;
-  city: string;
-  state: string;
-  postalCode: string;
-  dateOfBirth: string;
-  ssn: string;
+  firstName?: string;
+  lastName?: string;
+  address1?: string;
+  city?: string;
+  state?: string;
+  postalCode?: string;
+  dateOfBirth?: string;
+  ssn?: string;
   email: string;
   password: string;
 };
@@ -33,6 +33,7 @@ declare type User = {
   dwollaCustomerId: string;
   firstName: string;
   lastName: string;
+  name: string;
   address1: string;
   city: string;
   state: string;
@@ -210,6 +211,7 @@ declare interface TotalBalanceBoxProps {
 
 declare interface FooterProps {
   user: User;
+  type?: "desktop" | "mobile";
 }
 
 declare interface RightSidebarProps {
@@ -290,6 +292,15 @@ declare interface CreateTransactionProps {
 
 declare interface getTransactionsByBankIdProps {
   bankId: string;
+}
+
+interface CustomInputProps {
+  form: UseFormReturn<FieldValues>;
+  name: string; // allow any field name
+  label: string; // allow any label
+  placeholder?: string;
+  type?: string; // e.g., "text", "email", "password", "date", etc.
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 declare interface signInProps {
