@@ -15,41 +15,59 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import CustomInput from "../CustomInput";
-import { PasswordInput } from "../PasswordInput";
+import CustomInput from "@/components/CustomInput";
+import { PasswordInput } from "@/components/PasswordInput";
 import { Loader2 } from "lucide-react";
 import { signInSchema, signUpSchema } from "@/lib/authSchemas";
 import { useRouter } from "next/navigation";
 import { getLoggedInUser, signIn, signUp } from "@/lib/actions/user.actions";
+import PlaidLink from "@/components/PlaidLink";
+import { AuthFormProps, SignInParams, SignUpParams } from "@/types";
 
-const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
+const AuthForm = ({ type }: AuthFormProps) => {
   const router = useRouter();
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const isSignIn = type === "sign-in";
 
-  const formSchema = isSignIn ? signInSchema : signUpSchema;
+  // const formSchema = isSignIn ? signInSchema : signUpSchema;
 
-  type FormData = z.infer<typeof formSchema>;
+  // type FormData = z.infer<typeof formSchema>;
 
-  const defaultValues = isSignIn
-    ? { email: "", password: "" }
-    : {
-        firstName: "",
-        lastName: "",
-        address: "",
-        state: "",
-        postalCode: "",
-        dateOfBirth: "",
-        ssn: "",
-        email: "",
-        password: "",
-      };
+  // const defaultValues = isSignIn
+  //   ? { email: "", password: "" }
+  //   : {
+  //       firstName: "",
+  //       lastName: "",
+  //       address: "",
+  //       state: "",
+  //       postalCode: "",
+  //       dateOfBirth: "",
+  //       ssn: "",
+  //       email: "",
+  //       password: "",
+  //     };
 
-  const form = useForm<FormData>({
-    resolver: zodResolver(formSchema),
-    defaultValues: defaultValues as FormData,
-    mode: "onChange",
+  const form = useForm({
+    resolver: zodResolver(type === "sign-in" ? signInSchema : signUpSchema),
+    defaultValues:
+      type === "sign-in"
+        ? {
+            email: "",
+            password: "",
+          }
+        : {
+            firstName: "",
+            lastName: "",
+            address1: "",
+            city: "",
+            state: "",
+            postalCode: "",
+            dateOfBirth: "",
+            ssn: "",
+            email: "",
+            password: "",
+          },
   });
 
   // Handler to auto-format SSN as XXX-XX-XXXX
@@ -78,25 +96,22 @@ const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
     }
   };
 
-  const onSubmit = async (values: FormData) => {
-    setIsLoading(true);
-
+  const onSubmit = async (values: SignUpParams | SignInParams) => {
     try {
+      setIsLoading(true);
       // Sign up with Appwrite & create plain link token
-      if (type === "sign-up") {
-        const newUser = await signUp(values);
-        setUser(newUser);
-      }
 
       if (type === "sign-in") {
-        const response = await signIn({
-          email: values.email,
-          password: values.password,
-        });
-        if (response) router.push("/");
+        const signInValues = values as SignInParams;
+        await signIn(signInValues);
+        if (signInValues) router.push("/");
+      } else {
+        const signUpValues = values as SignUpParams;
+        const newUser = await signUp(signUpValues);
+        setUser(newUser);
       }
     } catch (error) {
-      console.log(error);
+      console.error("Authentication error:", error);
     } finally {
       setIsLoading(false);
     }
@@ -123,9 +138,10 @@ const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
           </p>
         </div>
       </header>
-
       {user ? (
-        <div className="flex flex-col gap-4">{/* PlaidLink */}</div>
+        <div className="flex flex-col gap-4">
+          <PlaidLink user={user!} variant="primary" />
+        </div>
       ) : (
         <>
           <Form {...form}>
@@ -152,7 +168,7 @@ const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
                   <div className="grid grid-cols-2 gap-4">
                     <CustomInput
                       form={form}
-                      name="address"
+                      name="address1"
                       label="Address"
                       placeholder="Enter your specific address"
                     />

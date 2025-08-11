@@ -27,7 +27,7 @@ export const signUpSchema = z.object({
       /^[A-Za-z'-]+$/,
       "Last name must only contain letters, apostrophes, or hyphens"
     ),
-  address: z
+  address1: z
     .string()
     .min(5, "Address is required")
     .max(50, "Address is too long"),
