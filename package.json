@@ -1,18 +1,39 @@
 {
-  "name": "jsm_banking",
-  "version": "0.1.0",
+  "name": "finsync-banking-app",
+  "version": "1.0.0",
   "private": true,
+  "description": "FinSync - A modern banking application built with Next.js that allows users to connect multiple bank accounts, view transactions, transfer funds, and manage their finances efficiently. Features real-time balance tracking, transaction categorization, and secure money transfers through Dwolla and Plaid integrations.",
+  "author": "Raghda T. Neiazy <raghda.neiazy@gmail.com>",
+  "keywords": [
+    "banking",
+    "finance",
+    "nextjs",
+    "plaid",
+    "dwolla",
+    "transactions",
+    "money-transfer",
+    "financial-management",
+    "react",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/raghdaneiazyy6/finsync-bank"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",
     "@radix-ui/react-dialog": "^1.1.14",
     "@radix-ui/react-label": "^2.1.7",
+    "@radix-ui/react-select": "^2.2.6",
     "@radix-ui/react-slot": "^1.2.3",
+    "@radix-ui/react-tabs": "^1.1.13",
     "@reduxjs/toolkit": "^2.8.2",
     "@sentry/nextjs": "^10.3.0",
     "chart.js": "^4.5.0",
@@ -44,5 +65,9 @@
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
   }
 }

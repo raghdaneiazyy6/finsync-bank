@@ -1,5 +1,3 @@
-import React from "react";
-
 declare type SearchParamProps = {
   params: { [key: string]: string };
   searchParams: { [key: string]: string | string[] | undefined };
@@ -24,6 +22,15 @@ declare type SignInParams = {
   email: string;
   password: string;
 };
+
+interface CustomInputProps {
+  form: UseFormReturn<FieldValues>;
+  name: string; // allow any field name
+  label: string; // allow any label
+  placeholder?: string;
+  type?: string; // e.g., "text", "email", "password", "date", etc.
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
 
 declare type User = {
   $id: string;
@@ -75,7 +82,7 @@ declare type Transaction = {
   category: string;
   date: string;
   image: string;
-  type: string;
+  status: "Processing" | "Success" | "Failed";
   $createdAt: string;
   channel: string;
   senderBankId: string;
@@ -177,6 +184,7 @@ declare interface PlaidLinkProps {
   user: User;
   variant?: "primary" | "ghost";
   dwollaCustomerId?: string;
+  className?: string;
 }
 
 // declare type User = sdk.Models.Document & {
@@ -211,7 +219,7 @@ declare interface TotalBalanceBoxProps {
 
 declare interface FooterProps {
   user: User;
-  type?: "desktop" | "mobile";
+  type?: "mobile" | "desktop";
 }
 
 declare interface RightSidebarProps {
@@ -292,15 +300,6 @@ declare interface CreateTransactionProps {
 
 declare interface getTransactionsByBankIdProps {
   bankId: string;
-}
-
-interface CustomInputProps {
-  form: UseFormReturn<FieldValues>;
-  name: string; // allow any field name
-  label: string; // allow any label
-  placeholder?: string;
-  type?: string; // e.g., "text", "email", "password", "date", etc.
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 declare interface signInProps {

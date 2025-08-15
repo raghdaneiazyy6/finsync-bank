@@ -5,7 +5,6 @@ import banksReducer from "./slices/banksSlice";
 import accountsReducer from "./slices/accountsSlice";
 import transactionsReducer from "./slices/transactionsSlice";
 import uiReducer from "./slices/uiSlice";
-// Import and add more reducers here as your app grows
 
 export const store = configureStore({
   reducer: {
@@ -15,7 +14,6 @@ export const store = configureStore({
     accounts: accountsReducer,
     transactions: transactionsReducer,
     ui: uiReducer,
-    // Add more slices here
   },
   // Middleware and DevTools are enabled by default
 });

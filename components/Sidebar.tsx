@@ -6,8 +6,8 @@ import Image from "next/image";
 import { sidebarLinks } from "@/constants";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
-import { SiderbarProps } from "@/types";
 import Footer from "./Footer";
+import PlaidLink from "./PlaidLink";
 
 const Sidebar = ({ user }: SiderbarProps) => {
   const pathName = usePathname();
@@ -50,7 +50,17 @@ const Sidebar = ({ user }: SiderbarProps) => {
             </Link>
           );
         })}
-        USER
+
+        <div className="sidebar-link">
+          <div className="relative size-6">
+            <Image src="/icons/connect-bank.svg" alt="connect bank" fill />
+          </div>
+          <PlaidLink
+            user={user}
+            variant="ghost"
+            className="sidebar-label !p-0 !w-full !justify-start !h-auto"
+          />
+        </div>
       </nav>
       <Footer user={user} />
     </section>

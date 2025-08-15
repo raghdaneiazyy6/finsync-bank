@@ -22,31 +22,12 @@ import { signInSchema, signUpSchema } from "@/lib/authSchemas";
 import { useRouter } from "next/navigation";
 import { getLoggedInUser, signIn, signUp } from "@/lib/actions/user.actions";
 import PlaidLink from "@/components/PlaidLink";
-import { AuthFormProps, SignInParams, SignUpParams } from "@/types";
 
 const AuthForm = ({ type }: AuthFormProps) => {
   const router = useRouter();
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const isSignIn = type === "sign-in";
-
-  // const formSchema = isSignIn ? signInSchema : signUpSchema;
-
-  // type FormData = z.infer<typeof formSchema>;
-
-  // const defaultValues = isSignIn
-  //   ? { email: "", password: "" }
-  //   : {
-  //       firstName: "",
-  //       lastName: "",
-  //       address: "",
-  //       state: "",
-  //       postalCode: "",
-  //       dateOfBirth: "",
-  //       ssn: "",
-  //       email: "",
-  //       password: "",
-  //     };
 
   const form = useForm({
     resolver: zodResolver(type === "sign-in" ? signInSchema : signUpSchema),

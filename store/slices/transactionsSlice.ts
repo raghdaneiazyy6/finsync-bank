@@ -1,4 +1,3 @@
-import { Transaction } from "@/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface TransactionsState {

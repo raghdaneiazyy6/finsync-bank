@@ -2,7 +2,7 @@
 import { type ClassValue, clsx } from "clsx";
 import qs from "query-string";
 import { twMerge } from "tailwind-merge";
-import type { AccountTypes, Transaction, CategoryCount } from "@/types";
+import { topCategoryStyles } from "@/constants";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -193,4 +193,87 @@ export const getTransactionStatus = (date: Date) => {
   twoDaysAgo.setDate(today.getDate() - 2);
 
   return date > twoDaysAgo ? "Processing" : "Success";
+};
+
+// Function to map raw category names to topCategoryStyles keys
+export const getCategoryKey = (categoryName: string): string => {
+  const name = categoryName.toUpperCase().trim();
+
+  switch (name) {
+    case "FOOD_AND_DRINK":
+    case "FOOD AND DRINK":
+      return "Food and Drink";
+    case "TRANSPORTATION":
+      return "Transportation";
+    case "TRAVEL":
+      return "Travel";
+    case "TRANSFER":
+      return "Transfer";
+    case "GENERAL_MERCHANDISE":
+    case "GENERAL MERCHANDISE":
+      return "General Merchandise";
+    case "INCOME":
+      return "Income";
+    default:
+      return "default";
+  }
+};
+
+// Function to get display name for categories
+export const getDisplayName = (categoryName: string): string => {
+  const name = categoryName.toUpperCase().trim();
+
+  switch (name) {
+    case "FOOD_AND_DRINK":
+    case "FOOD AND DRINK":
+      return "Food and Drink";
+    case "TRANSPORTATION":
+      return "Transportation";
+    case "TRAVEL":
+      return "Travel";
+    case "TRANSFER":
+      return "Transfer";
+    case "GENERAL_MERCHANDISE":
+    case "GENERAL MERCHANDISE":
+      return "General Merchandise";
+    case "INCOME":
+      return "Income";
+    default:
+      return (
+        categoryName.charAt(0).toUpperCase() +
+        categoryName.slice(1).toLowerCase()
+      );
+  }
+};
+
+// Calculate budget based on category and spending
+export const calculateBudget = (
+  styleKey: string,
+  totalSpent: number
+): number => {
+  const categoryKey = styleKey.toLowerCase();
+
+  if (categoryKey.includes("food")) {
+    return Math.max(200 + totalSpent * 0.5, totalSpent + 50);
+  } else if (categoryKey.includes("transportation")) {
+    return Math.max(150 + totalSpent * 0.7, totalSpent + 40);
+  } else if (categoryKey.includes("transfer")) {
+    return Math.max(500, totalSpent + 100);
+  } else if (categoryKey.includes("travel")) {
+    return Math.max(300 + totalSpent * 0.3, totalSpent + 80);
+  } else if (categoryKey.includes("general")) {
+    return Math.max(180 + totalSpent * 0.6, totalSpent + 60);
+  } else if (categoryKey.includes("income")) {
+    return Math.max(totalSpent * 1.2, 1000);
+  } else {
+    return Math.max(150 + totalSpent * 0.8, totalSpent + 50);
+  }
+};
+
+// Get category styles
+export const getCategoryStyles = (styleKey: string) => {
+  return (
+    topCategoryStyles[styleKey as keyof typeof topCategoryStyles] ||
+    topCategoryStyles.default
+  );
 };

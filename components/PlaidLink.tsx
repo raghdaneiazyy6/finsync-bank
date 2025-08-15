@@ -11,18 +11,30 @@ import {
   exchangePublicToken,
 } from "@/lib/actions/user.actions";
 import Image from "next/image";
-import { PlaidLinkProps } from "@/types";
+import { cn } from "@/lib/utils";
 
-const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
+interface ExtendedPlaidLinkProps extends PlaidLinkProps {
+  className?: string;
+}
+
+const PlaidLink = ({ user, variant, className }: ExtendedPlaidLinkProps) => {
   const router = useRouter();
-
   const [token, setToken] = useState("");
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const getLinkToken = async () => {
-      const data = await createLinkToken(user);
-
-      setToken(data?.linkToken);
+      try {
+        const data = await createLinkToken(user);
+        if (data?.linkToken) {
+          setToken(data.linkToken);
+        } else {
+          setError("Failed to initialize bank connection");
+        }
+      } catch (err) {
+        console.error("Error getting link token:", err);
+        setError("Failed to initialize bank connection");
+      }
     };
 
     getLinkToken();
@@ -30,30 +42,47 @@ const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
 
   const onSuccess = useCallback<PlaidLinkOnSuccess>(
     async (public_token: string) => {
-      await exchangePublicToken({
-        publicToken: public_token,
-        user,
-      });
+      try {
+        await exchangePublicToken({
+          publicToken: public_token,
+          user,
+        });
 
-      router.push("/");
+        // Force a refresh and redirect
+        router.refresh();
+        router.push("/");
+      } catch (err) {
+        console.error("Error connecting bank:", err);
+        setError("Failed to connect bank account");
+      }
     },
-    [user]
+    [user, router]
   );
+
+  const onExit = useCallback(() => {
+    // Optional: Handle user exit
+    console.log("User exited Plaid Link flow");
+  }, []);
 
   const config: PlaidLinkOptions = {
     token,
     onSuccess,
+    onExit,
+    onEvent: (eventName) => {
+      console.log("Plaid Link event:", eventName);
+    },
   };
 
   const { open, ready } = usePlaidLink(config);
 
   return (
     <>
+      {error && <p className="text-red-500 text-sm mb-2 px-4">{error}</p>}
       {variant === "primary" ? (
         <Button
           onClick={() => open()}
           disabled={!ready}
-          className="plaidlink-primary"
+          className={cn("plaidlink-primary", className)}
         >
           Connect bank
         </Button>
@@ -61,20 +90,19 @@ const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
         <Button
           onClick={() => open()}
           variant="ghost"
-          className="plaidlink-ghost"
+          className={cn(
+            "plaidlink-ghost flex items-center gap-2 w-full",
+            className
+          )}
         >
-          <Image
-            src="/icons/connect-bank.svg"
-            alt="connect bank"
-            width={24}
-            height={24}
-          />
-          <p className="hiddenl text-[16px] font-semibold text-black-2 xl:block">
-            Connect bank
-          </p>
+          <p className="text-[16px] font-semibold text-black-2">Connect bank</p>
         </Button>
       ) : (
-        <Button onClick={() => open()} className="plaidlink-default">
+        <Button
+          onClick={() => open()}
+          disabled={!ready}
+          className={cn("plaidlink-default flex items-center gap-2", className)}
+        >
           <Image
             src="/icons/connect-bank.svg"
             alt="connect bank"

@@ -51,32 +51,6 @@ export const ITEMS = [
 
 export const topCategoryStyles = {
   "Food and Drink": {
-    bg: "bg-blue-25",
-    circleBg: "bg-blue-100",
-    text: {
-      main: "text-blue-900",
-      count: "text-blue-700",
-    },
-    progress: {
-      bg: "bg-blue-100",
-      indicator: "bg-blue-700",
-    },
-    icon: "/icons/monitor.svg",
-  },
-  Travel: {
-    bg: "bg-success-25",
-    circleBg: "bg-success-100",
-    text: {
-      main: "text-success-900",
-      count: "text-success-700",
-    },
-    progress: {
-      bg: "bg-success-100",
-      indicator: "bg-success-700",
-    },
-    icon: "/icons/coins.svg",
-  },
-  default: {
     bg: "bg-pink-25",
     circleBg: "bg-pink-100",
     text: {
@@ -84,54 +58,162 @@ export const topCategoryStyles = {
       count: "text-pink-700",
     },
     progress: {
-      bg: "bg-pink-100",
-      indicator: "bg-pink-700",
+      bg: "bg-pink-200",
+      indicator: "bg-pink-500",
     },
-    icon: "/icons/shopping-bag.svg",
+    icon: "/icons/food.svg",
+  },
+  Travel: {
+    bg: "bg-green-25",
+    circleBg: "bg-green-100",
+    text: {
+      main: "text-green-900",
+      count: "text-green-700",
+    },
+    progress: {
+      bg: "bg-green-200",
+      indicator: "bg-green-500",
+    },
+    icon: "/icons/travel.svg",
+  },
+  Transfer: {
+    bg: "bg-blue-25",
+    circleBg: "bg-blue-100",
+    text: {
+      main: "text-blue-900",
+      count: "text-blue-700",
+    },
+    progress: {
+      bg: "bg-blue-200",
+      indicator: "bg-blue-500",
+    },
+    icon: "/icons/transfer.svg",
+  },
+  Transportation: {
+    bg: "bg-red-25",
+    circleBg: "bg-red-100",
+    text: {
+      main: "text-red-900",
+      count: "text-red-700",
+    },
+    progress: {
+      bg: "bg-red-200",
+      indicator: "bg-red-500",
+    },
+    icon: "/icons/car.svg",
+  },
+  "General Merchandise": {
+    bg: "bg-orange-25",
+    circleBg: "bg-orange-100",
+    text: {
+      main: "text-orange-900",
+      count: "text-orange-700",
+    },
+    progress: {
+      bg: "bg-orange-200",
+      indicator: "bg-orange-500",
+    },
+    icon: "/icons/shopping.svg",
+  },
+  Income: {
+    bg: "bg-green-25",
+    circleBg: "bg-green-100",
+    text: {
+      main: "text-green-900",
+      count: "text-green-700",
+    },
+    progress: {
+      bg: "bg-green-200",
+      indicator: "bg-green-500",
+    },
+    icon: "/icons/trending-up.svg",
+  },
+  default: {
+    bg: "bg-gray-25",
+    circleBg: "bg-gray-100",
+    text: {
+      main: "text-gray-900",
+      count: "text-gray-700",
+    },
+    progress: {
+      bg: "bg-gray-200",
+      indicator: "bg-gray-500",
+    },
+    icon: "/icons/monitor.svg",
   },
 };
 
 export const transactionCategoryStyles = {
-  "Food and Drink": {
-    borderColor: "border-pink-600",
+  FOOD_AND_DRINK: {
+    borderColor: "border-pink-200",
     backgroundColor: "bg-pink-500",
     textColor: "text-pink-700",
-    chipBackgroundColor: "bg-inherit",
+    chipBackgroundColor: "bg-pink-50",
   },
-  Payment: {
-    borderColor: "border-success-600",
-    backgroundColor: "bg-green-600",
-    textColor: "text-success-700",
-    chipBackgroundColor: "bg-inherit",
-  },
-  "Bank Fees": {
-    borderColor: "border-success-600",
-    backgroundColor: "bg-green-600",
-    textColor: "text-success-700",
-    chipBackgroundColor: "bg-inherit",
-  },
-  Transfer: {
-    borderColor: "border-red-700",
-    backgroundColor: "bg-red-700",
+  TRANSPORTATION: {
+    borderColor: "border-red-200",
+    backgroundColor: "bg-red-500",
     textColor: "text-red-700",
-    chipBackgroundColor: "bg-inherit",
+    chipBackgroundColor: "bg-red-50",
   },
-  Processing: {
-    borderColor: "border-[#F2F4F7]",
-    backgroundColor: "bg-gray-500",
-    textColor: "text-[#344054]",
-    chipBackgroundColor: "bg-[#F2F4F7]",
+  TRAVEL: {
+    borderColor: "border-green-200",
+    backgroundColor: "bg-green-500",
+    textColor: "text-green-700",
+    chipBackgroundColor: "bg-green-50",
   },
-  Success: {
-    borderColor: "border-[#12B76A]",
-    backgroundColor: "bg-[#12B76A]",
-    textColor: "text-[#027A48]",
-    chipBackgroundColor: "bg-[#ECFDF3]",
+  PAYMENT: {
+    borderColor: "border-green-200",
+    backgroundColor: "bg-green-500",
+    textColor: "text-green-700",
+    chipBackgroundColor: "bg-green-50",
   },
-  default: {
-    borderColor: "",
+  BANK_FEES: {
+    borderColor: "border-yellow-200",
+    backgroundColor: "bg-yellow-500",
+    textColor: "text-yellow-700",
+    chipBackgroundColor: "bg-yellow-50",
+  },
+  INCOME: {
+    borderColor: "border-emerald-200",
+    backgroundColor: "bg-emerald-500",
+    textColor: "text-emerald-700",
+    chipBackgroundColor: "bg-emerald-50",
+  },
+  TRANSFER: {
+    borderColor: "border-blue-200",
     backgroundColor: "bg-blue-500",
     textColor: "text-blue-700",
-    chipBackgroundColor: "bg-inherit",
+    chipBackgroundColor: "bg-blue-50",
+  },
+  GENERAL_MERCHANDISE: {
+    borderColor: "border-orange-200",
+    backgroundColor: "bg-orange-500",
+    textColor: "text-orange-700",
+    chipBackgroundColor: "bg-orange-50",
+  },
+  Processing: {
+    borderColor: "border-gray-200",
+    backgroundColor: "bg-gray-400",
+    textColor: "text-gray-700",
+    chipBackgroundColor: "bg-gray-50",
+  },
+  Success: {
+    borderColor: "border-green-200",
+    backgroundColor: "bg-green-500",
+    textColor: "text-green-700",
+    chipBackgroundColor: "bg-green-50",
+  },
+  Failed: {
+    borderColor: "border-red-200",
+    backgroundColor: "bg-red-500",
+    textColor: "text-red-700",
+    chipBackgroundColor: "bg-red-50",
+  },
+  default: {
+    borderColor: "border-gray-200",
+    backgroundColor: "bg-gray-500",
+    textColor: "text-gray-700",
+    chipBackgroundColor: "bg-gray-50",
   },
 };
