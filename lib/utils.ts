@@ -209,6 +209,8 @@ export const getCategoryKey = (categoryName: string): string => {
       return "Travel";
     case "TRANSFER":
       return "Transfer";
+    case "LOAN_PAYMENTS":
+      return "Loan Payments";
     case "GENERAL_MERCHANDISE":
     case "GENERAL MERCHANDISE":
       return "General Merchandise";
@@ -233,6 +235,8 @@ export const getDisplayName = (categoryName: string): string => {
       return "Travel";
     case "TRANSFER":
       return "Transfer";
+    case "LOAN_PAYMENTS":
+      return "Loan Payments";
     case "GENERAL_MERCHANDISE":
     case "GENERAL MERCHANDISE":
       return "General Merchandise";
@@ -263,6 +267,8 @@ export const calculateBudget = (
     return Math.max(300 + totalSpent * 0.3, totalSpent + 80);
   } else if (categoryKey.includes("general")) {
     return Math.max(180 + totalSpent * 0.6, totalSpent + 60);
+  } else if (categoryKey.includes("loan")) {
+    return Math.max(250 + totalSpent * 0.4, totalSpent + 70);
   } else if (categoryKey.includes("income")) {
     return Math.max(totalSpent * 1.2, 1000);
   } else {

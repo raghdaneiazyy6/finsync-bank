@@ -64,19 +64,6 @@ export const topCategoryStyles = {
     icon: "/icons/food.svg",
   },
   Travel: {
-    bg: "bg-green-25",
-    circleBg: "bg-green-100",
-    text: {
-      main: "text-green-900",
-      count: "text-green-700",
-    },
-    progress: {
-      bg: "bg-green-200",
-      indicator: "bg-green-500",
-    },
-    icon: "/icons/travel.svg",
-  },
-  Transfer: {
     bg: "bg-blue-25",
     circleBg: "bg-blue-100",
     text: {
@@ -86,6 +73,19 @@ export const topCategoryStyles = {
     progress: {
       bg: "bg-blue-200",
       indicator: "bg-blue-500",
+    },
+    icon: "/icons/travel.svg",
+  },
+  Transfer: {
+    bg: "bg-yellow-25",
+    circleBg: "bg-yellow-100",
+    text: {
+      main: "text-yellow-900",
+      count: "text-yellow-700",
+    },
+    progress: {
+      bg: "bg-yellow-200",
+      indicator: "bg-yellow-500",
     },
     icon: "/icons/transfer.svg",
   },
@@ -126,8 +126,22 @@ export const topCategoryStyles = {
       bg: "bg-green-200",
       indicator: "bg-green-500",
     },
-    icon: "/icons/trending-up.svg",
+    icon: "/icons/money.svg",
   },
+  "Loan Payments": {
+    bg: "bg-cyan-25",
+    circleBg: "bg-cyan-100",
+    text: {
+      main: "text-cyan-900",
+      count: "text-cyan-700",
+    },
+    progress: {
+      bg: "bg-cyan-200",
+      indicator: "bg-cyan-500",
+    },
+    icon: "/icons/loan.svg",
+  },
+
   default: {
     bg: "bg-gray-25",
     circleBg: "bg-gray-100",
@@ -157,16 +171,16 @@ export const transactionCategoryStyles = {
     chipBackgroundColor: "bg-red-50",
   },
   TRAVEL: {
-    borderColor: "border-green-200",
-    backgroundColor: "bg-green-500",
-    textColor: "text-green-700",
-    chipBackgroundColor: "bg-green-50",
+    borderColor: "border-blue-200",
+    backgroundColor: "bg-blue-500",
+    textColor: "text-blue-700",
+    chipBackgroundColor: "bg-blue-50",
   },
-  PAYMENT: {
-    borderColor: "border-green-200",
-    backgroundColor: "bg-green-500",
-    textColor: "text-green-700",
-    chipBackgroundColor: "bg-green-50",
+  LOAN_PAYMENTS: {
+    borderColor: "border-cyan-200",
+    backgroundColor: "bg-cyan-500",
+    textColor: "text-cyan-700",
+    chipBackgroundColor: "bg-cyan-50",
   },
   BANK_FEES: {
     borderColor: "border-yellow-200",
@@ -181,10 +195,10 @@ export const transactionCategoryStyles = {
     chipBackgroundColor: "bg-emerald-50",
   },
   TRANSFER: {
-    borderColor: "border-blue-200",
-    backgroundColor: "bg-blue-500",
-    textColor: "text-blue-700",
-    chipBackgroundColor: "bg-blue-50",
+    borderColor: "border-yellow-200",
+    backgroundColor: "bg-yellow-500",
+    textColor: "text-yellow-700",
+    chipBackgroundColor: "bg-yellow-50",
   },
   GENERAL_MERCHANDISE: {
     borderColor: "border-orange-200",

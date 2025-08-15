@@ -18,6 +18,7 @@ import {
 const formatDisplayName = (name: string) => {
   if (name === "FOOD_AND_DRINK") return "Food and Drink";
   if (name === "GENERAL_MERCHANDISE") return "General Merchandise";
+  if (name === "LOAN_PAYMENTS") return "Loan Payments";
   if (["Processing", "Success", "Failed"].includes(name)) return name;
 
   return name
